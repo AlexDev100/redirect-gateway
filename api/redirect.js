@@ -23,8 +23,8 @@ export default function handler(req, res) {
       //nid: '3316',
       transaction_id: cid,
       //status: 'approved',
-      adv1: affid || '',
-      adv2: sub1 || ''
+      affid: affid || '',
+      sub1: sub1 || ''
     });
 
     const redirectUrl = `${baseUrl}?${params.toString()}`;
