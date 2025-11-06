@@ -27,7 +27,7 @@ export default function handler(req, res) {
       sub1: sub1 || ''
     });
 
-    const redirectUrl = `${baseUrl}?${params.toString()}`;
+    const redirectUrl = `${baseUrl}&${params.toString()}`;
 
     console.log({
       userAgent,
