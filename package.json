@@ -1,0 +1,13 @@
+{
+  "name": "redirect-gateway",
+  "version": "1.0.0",
+  "description": "Redirect root requests to /api/redirect",
+  "main": "api/redirect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
