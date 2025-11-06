@@ -21,7 +21,7 @@ export default function handler(req, res) {
 
     const params = new URLSearchParams({
       //nid: '3316',
-      transaction_id: cid,
+      cid: cid,
       //status: 'approved',
       affid: affid || '',
       sub1: sub1 || ''
