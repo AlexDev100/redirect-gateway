@@ -20,14 +20,18 @@ export default function handler(req, res) {
       : process.env.DESKTOP_REDIRECT_URL;
 
     const params = new URLSearchParams({
-      //nid: '3316',
       cid: cid,
-      //status: 'approved',
       affid: affid || '',
       sub1: sub1 || ''
     });
 
-    const redirectUrl = `${baseUrl}&${params.toString()}`;
+    let redirectUrl;
+
+    if (isMobile) {
+      redirectUrl = `${baseUrl}?${params.toString()}`;
+    } else {
+      redirectUrl = `${baseUrl}&${params.toString()}`;
+    }
 
     console.log({
       userAgent,
