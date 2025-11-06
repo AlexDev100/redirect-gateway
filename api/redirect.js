@@ -15,14 +15,14 @@ export default function handler(req, res) {
 
 
     // Build the destination URL
-    const baseUrl = isMobile 
-      ? 'https://mov-version.com/' 
-      : 'https://pc-version.com/';
+    const baseUrl = isMobile
+      ? process.env.MOBILE_REDIRECT_URL
+      : process.env.DESKTOP_REDIRECT_URL;
 
     const params = new URLSearchParams({
-      nid: '3316',
+      //nid: '3316',
       transaction_id: cid,
-      status: 'approved',
+      //status: 'approved',
       adv1: affid || '',
       adv2: sub1 || ''
     });
