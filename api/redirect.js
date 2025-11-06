@@ -1,3 +1,4 @@
+// Endpoint: /api/redirect
 export default function handler(req, res) {
   try {
     // Extract query string parameters
