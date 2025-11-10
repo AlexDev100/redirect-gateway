@@ -4,7 +4,7 @@ export default function handler(req, res) {
     // Extract query string parameters
     const { cid, affid, sub1 } = req.query;
 
-    // Validate required parameters
+    // Validate cid
     if (!cid) {
       return res.status(400).json({ error: 'The cid parameter is required' });
     }
@@ -25,20 +25,9 @@ export default function handler(req, res) {
       sub1: sub1 || ''
     });
 
-    // Backup hash parameters (in case some trackers need them)
-    const hashParams = `#cid=${cid}&affid=${affid || ''}&sub1=${sub1 || ''}`;
-
     //let redirectUrl;
     const separator = baseUrl.includes('?') ? '&' : '?';
     const redirectUrl = `${baseUrl}${separator}${params.toString()}`;
-
-    /* if (isMobile) {
-      //redirectUrl = `${baseUrl}?${params.toString()}`;
-      redirectUrl = `${baseUrl}?${params.toString()}${hashParams}`;
-    } else {
-      //redirectUrl = `${baseUrl}&${params.toString()}`;
-      redirectUrl = `${baseUrl}&${params.toString()}${hashParams}`;
-    } */
 
     /* console.log({
       userAgent,
@@ -65,7 +54,7 @@ export default function handler(req, res) {
     
     console.log('REDIRECT_LOG:', JSON.stringify(logData));
 
-    // Redirect with 302 status code (temporary redirect)
+    // Redirect with 302 status code
     res.redirect(302, redirectUrl);
 
   } catch (error) {
