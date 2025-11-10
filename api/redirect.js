@@ -25,12 +25,17 @@ export default function handler(req, res) {
       sub1: sub1 || ''
     });
 
+    // Backup hash parameters (in case some trackers need them)
+    const hashParams = `#cid=${cid}&affid=${affid || ''}&sub1=${sub1 || ''}`;
+
     let redirectUrl;
 
     if (isMobile) {
-      redirectUrl = `${baseUrl}?${params.toString()}`;
+      //redirectUrl = `${baseUrl}?${params.toString()}`;
+      redirectUrl = `${baseUrl}?${params.toString()}${hashParams}`;
     } else {
-      redirectUrl = `${baseUrl}&${params.toString()}`;
+      //redirectUrl = `${baseUrl}&${params.toString()}`;
+      redirectUrl = `${baseUrl}&${params.toString()}${hashParams}`;
     }
 
     /* console.log({
@@ -40,7 +45,6 @@ export default function handler(req, res) {
     }); */
 
     // Enhanced logging
-    // 🆕 LOGS MEJORADOS
     const logData = {
       timestamp: new Date().toISOString(),
       userAgent,
