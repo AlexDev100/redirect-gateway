@@ -33,11 +33,31 @@ export default function handler(req, res) {
       redirectUrl = `${baseUrl}&${params.toString()}`;
     }
 
-    console.log({
+    /* console.log({
       userAgent,
       isMobile,
       redirectUrl
-    });
+    }); */
+
+    // Enhanced logging
+    // 🆕 LOGS MEJORADOS
+    const logData = {
+      timestamp: new Date().toISOString(),
+      userAgent,
+      isMobile,
+      device: isMobile ? 'MOBILE' : 'DESKTOP',
+      referer: req.headers['referer'] || 'direct',
+      ip: req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown',
+      params: {
+        cid: cid || 'MISSING',
+        affid: affid || 'MISSING',
+        sub1: sub1 || 'MISSING'
+      },
+      redirectUrl,
+      fullRequestUrl: req.url
+    };
+    
+    console.log('REDIRECT_LOG:', JSON.stringify(logData));
 
     // Redirect with 302 status code (temporary redirect)
     res.redirect(302, redirectUrl);
