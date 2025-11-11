@@ -56,7 +56,8 @@ export default function handler(req, res) {
 
     // Redirect with 302 status code
     res.redirect(302, redirectUrl);
-
+    res.redirect(302, redirectUrl);
+    
   } catch (error) {
     console.error('Redirect error:', error);
     res.status(500).json({ error: 'Internal server error' });
