@@ -29,6 +29,12 @@ export default function handler(req, res) {
     const separator = baseUrl.includes('?') ? '&' : '?';
     const redirectUrl = `${baseUrl}${separator}${params.toString()}`;
 
+    const url = new URL(redirectUrl);
+    const fullPath = url.pathname + url.search; // /path?query=string
+    const hashBackup = '#original=' + encodeURIComponent(fullPath);
+
+    const finalUrl = redirectUrl + hashBackup;
+
     /* console.log({
       userAgent,
       isMobile,
@@ -55,8 +61,8 @@ export default function handler(req, res) {
     console.log('REDIRECT_LOG:', JSON.stringify(logData));
 
     // Redirect with 302 status code
-    res.redirect(302, redirectUrl);
-    res.redirect(302, redirectUrl);
+    //res.redirect(302, redirectUrl);
+    res.redirect(302, finalUrl);
     
   } catch (error) {
     console.error('Redirect error:', error);
